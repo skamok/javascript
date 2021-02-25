@@ -1,1 +1,240 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Type coercion</title>
+</head>
+<body>
+  <header>
+    <h1>Type coercion</h1>
+  </header>
+  <main>
+    <section>
+      <h4>Types of conversion</h4>
+      <ul>
+        <li>to string</li>
+        <li>to number</li>
+        <li>to boolean</li>
+      </ul>
+    </section>
+    <section>
+      <h4>To string</h4>
+      <ul>
+        <li>
+          <code>Number + 'string' = <span id="11"></span>
+            <br>Example: 5 + '_str' = <span id="111res"></span>
+            <br>Example: Infinity + '_str' = <span id="112res"></span>
+            <br>Example: NaN + '_str' = <span id="113res"></span>
+          </code>
+          <script>
+            let n = 5;
+            let str = '_str';
+            let res = n + str;
+            document.getElementById('11').innerHTML = typeof res;
+            document.getElementById('111res').innerHTML = res;
+            n = Infinity;
+            res = n + str;
+            document.getElementById('112res').innerHTML = res;
+            n = NaN;
+            res = n + str;
+            document.getElementById('113res').innerHTML = res;
+          </script>
+        </li>
+        <li>
+          <code>Boolean + 'string' = <span id="12"></span><br>Example: true + '_str' = <span id="12res"></span></code>
+          <script>
+            n = true;
+            res = n + str;
+            document.getElementById('12').innerHTML = typeof res;
+            document.getElementById('12res').innerHTML = res;
+          </script>
+        </li>
+        <li>
+          <code>null + 'string' = <span id="13"></span><br>Example: null + '_str' = <span id="13res"></span></code>
+          <script>
+            n = null;
+            res = n + str;
+            document.getElementById('13').innerHTML = typeof res;
+            document.getElementById('13res').innerHTML = res;
+          </script>
+        </li>
+        <li>
+          <code>undefined + 'string' = <span id="14"></span><br>Example: undefined + '_str' = <span id="14res"></span></code>
+          <script>
+            n = undefined;
+            res = n + str;
+            document.getElementById('14').innerHTML = typeof res;
+            document.getElementById('14res').innerHTML = res;
+          </script>
+        </li>
+        <li>
+          <code>Symbol can be converted only explicitly <span id="15"></span><br>String(Symbol('MySymbol')) = <span id="15res"></span></code>
+          <script>
+            const symb = Symbol('MySymbol');            
+            document.getElementById('15res').innerHTML = String(symb);
+          </script>
+        </li>
+        <li>
+          <code>Object + 'string' = <span id="16"></span><br>Example: {age: 5} + '_str' = <span id="16res"></span></code>
+          <script>
+            n = {age: 5};
+            res = n + str;
+            document.getElementById('16').innerHTML = typeof res;
+            document.getElementById('16res').innerHTML = res;
+          </script>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h4>To number</h4>
+      <ul>
+        <li>
+          <code>String implicitly coercion: 'number'  "-" || "*" || "/"  number = <span id="21"></span><br>Example: '25' - 5 = <span id="21res"></span></code>
+          <script>
+            str = '25';
+            n = 5;
+            res = str - n;
+            document.getElementById('21').innerHTML = typeof res;
+            document.getElementById('21res').innerHTML = res;
+          </script>
+          <br>
+          <code>String explicitly coercion: Number('number') + Number('number') = <span id="211"></span><br>Example: Number('5') + Number('3') = <span id="211res"></span></code>
+          <script>
+            n2 = 3;
+            n = 5;
+            res = n + n2;
+            document.getElementById('211').innerHTML = typeof res;
+            document.getElementById('211res').innerHTML = res;
+          </script>
+          <br>
+          <code>String explicitly coercion: Number('string') = <span id="212"></span><br>Example: Number('5z') = <span id="212res"></span></code>
+          <script>
+            n = '5z';
+            res = Number(n) ;
+            document.getElementById('212').innerHTML = 'not a number';
+            document.getElementById('212res').innerHTML = res;
+          </script>
+        </li>
+        <li>
+          <code>Boolean + number = <span id="22"></span><br>Example: true + 2 = <span id="22res"></span></code>
+          <script>
+            let b = true;
+            n = 2;
+            res = n + b;
+            document.getElementById('22').innerHTML = typeof res;
+            document.getElementById('22res').innerHTML = res;
+          </script>
+          <br>
+          <code>Example: Number(false) = <span id="221res"></span></code>
+          <script>
+            b = false;            
+            res = Number(b)
+            document.getElementById('221res').innerHTML = res;
+          </script>
+        </li>
+        <li>
+          <code>Undifined = <span id="23res"></span></code>
+          <script>
+            n = undefined;
+            res = Number(n);
+            document.getElementById('23res').innerHTML = res;
+          </script>
+        </li>
+        <li>
+          <code>Null = <span id="24res"></span></code>
+          <script>
+            n = null;
+            res = Number(n);
+            document.getElementById('24res').innerHTML = res;
+          </script>
+        </li>
+        <li>
+          <code>Symbol to Number = <span id="25res"></span></code>
+          <script>
+            try {
+              res = Number(symb);
+            } catch (error) {
+              document.getElementById('25res').innerHTML = error.name + ' ' +error.message; 
+            }
+          </script>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h4>To boolean</h4>
+      <ul>
+        <li>
+          <code>
+            Empty string = <span id="31"></span> 
+          </code>
+          <script>
+            document.getElementById('31').innerHTML = Boolean('');
+          </script>
+          <br>
+          <code>
+            'String' = <span id="311"></span> 
+          </code>
+          <script>
+            document.getElementById('311').innerHTML = Boolean('asdf');
+          </script>
+        </li>
+        <li>
+          <code>
+            Number 0 = <span id="321"></span> 
+          </code>
+          <script>
+            document.getElementById('321').innerHTML = Boolean(0);
+          </script>
+          <br>
+          <code>
+            Number 10 = <span id="322"></span> 
+          </code>
+          <script>
+            document.getElementById('322').innerHTML = Boolean(10);
+          </script>
+          <br>
+          <code>
+            NaN = <span id="323"></span> 
+          </code>
+          <script>
+            document.getElementById('323').innerHTML = Boolean(NaN);
+          </script>
+          <br>
+          <code>
+            NaN == NaN <span id="324"></span> 
+          </code>
+          <script>
+            document.getElementById('324').innerHTML = Boolean(NaN == NaN);
+          </script>
+        </li>
+        <li>
+          <code>
+            Object = <span id="33"></span> 
+          </code>
+          <script>
+            document.getElementById('33').innerHTML = Boolean({});
+          </script>
+        </li>
+        <li>
+          <code>
+            Null = <span id="34"></span> 
+          </code>
+          <script>
+            document.getElementById('34').innerHTML = Boolean(null);
+          </script>
+        </li>
+        <li>
+          <code>
+            Undefined = <span id="35"></span> 
+          </code>
+          <script>
+            document.getElementById('35').innerHTML = Boolean(undefined);
+          </script>
+        </li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
